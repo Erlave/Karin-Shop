@@ -1,0 +1,55 @@
+{% load static %}
+{% load render_partial %}
+<!doctype html>
+<html lang="en" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>
+    {% block page_title %}قالب فروشگاهی کارین{% endblock page_title %}
+    </title>
+    
+
+    <!-- ==========================  DARK MODE SCRIPT ============================= -->
+    <script type="text/javascript">
+        if (
+            localStorage.theme === "dark" ||
+            (!("theme" in localStorage) &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+    </script>
+   
+</head>
+
+<body>
+
+<!-- Header -->
+{% include 'all_icons.html' %}
+{% include 'header_else_reference.html' %}
+{% render_partial 'home.views.header_else_component' %}
+
+
+
+
+    
+{% block content %}{% endblock content %}
+
+
+
+
+<!-- Footer -->
+{% include 'footer_home_reference.html' %}
+{% render_partial 'home.views.footer_home_component' %}
+
+
+</body>
+
+</html>
+

@@ -1,0 +1,13 @@
+{% if results %}
+    <ul class="divide-y">
+    {% for product in results %}
+        <li class="p-2 hover:bg-gray-100">
+            <a href="{% url 'product_details' slug=product.slug %}">
+                {{ product.name }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p class="p-2 text-gray-500">نتیجه‌ای یافت نشد</p>
+{% endif %}

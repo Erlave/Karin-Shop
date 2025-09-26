@@ -1,0 +1,129 @@
+{% extends "base_else.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+    <main class="container">
+        <!-- Breadcrumb -->
+        <nav class="flex mt-8" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                <li class="inline-flex items-center">
+                    <a href="index.html"
+                        class="inline-flex items-center text-sm gap-x-1  text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                        <svg class="size-4 mb-0.5">
+                            <use href="#home" />
+                        </svg>
+                        صفحه اصلی
+                    </a>
+                </li>
+                <li class="inline-flex items-center">
+                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 9 4-4-4-4" />
+                </svg>
+                    <a href="shop.html"
+                        class="inline-flex items-center text-sm gap-x-1  text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                        مقالات
+                    </a>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
+                        </svg>
+                        <span class="ms-1 text-sm  text-gray-500 md:ms-2 dark:text-gray-400">جزییات مقاله</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+        <!-- Article Details -->
+        <section class="flex flex-col lg:flex-row items-start gap-4 mt-8 ">
+            <!-- ARTICLE -->
+            <div
+            class="w-full lg:w-3/4 flex flex-col gap-y-8 px-4 lg:px-8 py-4 rounded-lg bg-white dark:bg-gray-800 shadow">
+            <!-- ARTICLE HEADER -->
+            <div class="w-full flex flex-col gap-y-6 ">
+                <div class="flex flex-col lg:flex-row gap-y-3 lg:items-center lg:justify-between">
+                    <h2 class="font-DanaDemiBold text-lg lg:text-2xl">  {{web.name}}  </h2>
+                    <button  id="copy-link-btn" class="flex items-center gap-x-1 text-blue-500 cursor-pointer">
+                        <svg class="w-4 h-4">
+                            <use href="#share"></use>
+                        </svg>
+                        <p class="font-DanaMedium">اشتراک گذاری</p>
+                    </button>
+                </div>
+                        <script>
+                            document.getElementById("copy-link-btn").addEventListener("click", function () {
+                                // گرفتن لینک فعلی صفحه
+                                const productUrl = window.location.href;
+
+                                // استفاده از API جدید کلیپ‌بورد
+                                navigator.clipboard.writeText(productUrl).then(function () {
+                                    document.getElementById("copy-msg").style.display = "block";
+                                    setTimeout(() => {
+                                        document.getElementById("copy-msg").style.display = "none";
+                                    }, 2000);
+                                }).catch(function (err) {
+                                    console.error("خطا در کپی کردن لینک:", err);
+                                });
+                            });
+                        </script>
+                        <script>
+                            document.getElementById("copy-link-btn").addEventListener("click", function () {
+                                const productUrl = window.location.href;
+
+                                navigator.clipboard.writeText(productUrl).then(function () {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'لینک کپی شد!',
+                                        text: 'الان می‌تونی هرجا خواستی پیستش کنی 😉',
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    });
+                                }).catch(function (err) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'خطا!',
+                                        text: 'مشکلی در کپی کردن لینک پیش اومد.',
+                                    });
+                                    console.error("خطا در کپی کردن لینک:", err);
+                                });
+                            });
+                        </script>
+                <div class="flex flex-wrap  items-center gap-y-3 gap-x-8 text-sm">
+                    
+                    <span class="flex items-center gap-x-1 text-gray-400 ">
+                        <svg class="w-4 h-4">
+                            <use href="#user"></use>
+                        </svg>
+                        <p>توسط :  {{web.madeby}} </p>
+                    </span>
+                    
+                </div>
+            </div>
+            <!-- ARTICLE MAIN -->
+            <div>
+                <img class="rounded-lg" src={{web.image1.url}} alt="">
+                <p class="mt-3 leading-10 text-gray-600 dark:text-gray-300">
+                    {{web.description}}
+                </p>
+                
+            </div>
+            <!-- SIDE BAR -->
+             
+
+        </section>
+    </main>
+
+
+
+
+
+
+{% endblock content %}

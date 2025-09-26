@@ -1,0 +1,85 @@
+{% load static %}
+{% load poll_extras %}
+                    
+                    <!-- PRODUCT ITEM -->
+                    <div class=" product-card group">
+                        <!-- product header -->
+                        <div class="product-card_header">
+                            <div class="flex items-center gap-x-2">
+                                {% comment %} <div class="tooltip">
+                                    <button class="rounded-full p-1.5 app-border app-hover">
+                                        <svg class="size-4">
+                                            <use href="#shopping-cart"></use>
+                                        </svg>
+                                    </button>
+                                    <div class="tooltiptext">
+                                        سبد خرید
+                                    </div>
+                                </div> {% endcomment %}
+                                {% comment %} <div class="tooltip">
+                                    <button class="rounded-full p-1.5 app-border app-hover">
+                                        <svg class="size-4">
+                                            <use href="#heart"></use>
+                                        </svg>
+                                    </button>
+                                    <div class="tooltiptext">
+                                        علاقه مندی
+                                    </div>
+                                </div> {% endcomment %}
+                                <div class="tooltip">
+                                    
+                                </div>
+                            </div>
+                            <!-- badge offer -->
+                             {% if product.is_off %}
+                                <span class="product-card_badge">{{product.off_percent}}%</span>
+                                
+                                
+                                {% endif %}
+                        </div>
+                        <!-- product img -->
+                        <a href="{{product.get_absolute_url}}">
+                            <img class="product-card_img group-hover:opacity-0 absolute" src={{product.image1.url}}
+                                alt="">
+                            <img class="product-card_img opacity-0 group-hover:opacity-100"
+                                src={{product.image1.url}} alt="">
+                        </a>
+                        <!--  product footer -->
+                        <div class="space-y-2">
+                            <a href="{{product.get_absolute_url}}" class="product-card_link">
+                                {{product.name}}
+                            </a>
+                            <!-- Rate and Price -->
+                            <div class="product-card_price-wrapper">
+                                <!-- RATE -->
+                                <div class="product-card_rate">
+                                    <span class="flex items-center gap-x-0.5">
+                                        <svg class="size-4 text-blue-500 mb-0.5">
+                                            <use href="#rocket"></use>
+                                        </svg>
+                                        <p class="text-xs">ارسال امروز</p>
+                                    </span>
+                                    <span class="text-gray-400 flex items-center text-sm gap-x-0.5">
+                                        <p> 5.0 </p>
+                                        <svg class="size-4 mb-1">
+                                            <use href="#star"></use>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <!-- Price -->
+                                <div class="product-card_price">
+
+                                    {% if product.is_off %}<del> {{product.price|three_digits_currency}}<h6>تومان</h6></del><p>{{product.get_price|three_digits_currency}}</p>{% else %} <p>{{product.price |three_digits_currency}}</p>{% endif %}
+                                        
+                                        
+
+                                        
+                                           
+                                    
+
+                                    
+                                    <span>تومان</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
