@@ -16,6 +16,8 @@ from .models import Product
 
 # def product_view (request):
 #     return render (request , 'product_module/shop_page.html')
+
+
 class ProductListView(ListView):
     model = Product
     template_name = 'product_module/shop_page.html'
